@@ -19,8 +19,7 @@ class _AppsListScreenState extends State<AppsListScreen> {
           PopupMenuButton<String>(
             itemBuilder: (BuildContext context) {
               return <PopupMenuItem<String>>[
-                PopupMenuItem<String>(
-                    value: 'system_apps', child: Text('Toggle system apps')),
+                PopupMenuItem<String>(value: 'system_apps', child: Text('Toggle system apps')),
                 PopupMenuItem<String>(
                   value: 'launchable_apps',
                   child: Text('Toggle launchable apps only'),
@@ -42,10 +41,7 @@ class _AppsListScreenState extends State<AppsListScreen> {
           )
         ],
       ),
-      body: _AppsListScreenContent(
-          includeSystemApps: _showSystemApps,
-          onlyAppsWithLaunchIntent: _onlyLaunchableApps,
-          key: GlobalKey()),
+      body: _AppsListScreenContent(includeSystemApps: _showSystemApps, onlyAppsWithLaunchIntent: _onlyLaunchableApps, key: GlobalKey()),
     );
   }
 }
@@ -54,17 +50,14 @@ class _AppsListScreenContent extends StatelessWidget {
   final bool includeSystemApps;
   final bool onlyAppsWithLaunchIntent;
 
-  const _AppsListScreenContent(
-      {Key? key,
-      this.includeSystemApps: false,
-      this.onlyAppsWithLaunchIntent: false})
-      : super(key: key);
+  const _AppsListScreenContent({Key? key, this.includeSystemApps: false, this.onlyAppsWithLaunchIntent: false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Application>>(
       future: DeviceApps.getInstalledApplications(
           includeAppIcons: true,
+          includeAppBanners: true,
           includeSystemApps: includeSystemApps,
           onlyAppsWithLaunchIntent: onlyAppsWithLaunchIntent),
       builder: (BuildContext context, AsyncSnapshot<List<Application>> data) {
@@ -80,9 +73,9 @@ class _AppsListScreenContent extends StatelessWidget {
                   return Column(
                     children: <Widget>[
                       ListTile(
-                        leading: app is ApplicationWithIcon
+                        leading: app is ApplicationWithIconAndBanner
                             ? CircleAvatar(
-                                backgroundImage: MemoryImage(app.icon),
+                                backgroundImage: MemoryImage(app.banner),
                                 backgroundColor: Colors.white,
                               )
                             : null,

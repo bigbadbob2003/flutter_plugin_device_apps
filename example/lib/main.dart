@@ -19,8 +19,7 @@ class ExampleApp extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute<Object>(
-                        builder: (BuildContext context) => AppsListScreen()),
+                    MaterialPageRoute<Object>(builder: (BuildContext context) => AppsListScreen()),
                   );
                 },
                 child: Text('Applications list')),
@@ -28,8 +27,7 @@ class ExampleApp extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute<Object>(
-                        builder: (BuildContext context) => AppsEventsScreen()),
+                    MaterialPageRoute<Object>(builder: (BuildContext context) => AppsEventsScreen()),
                   );
                 },
                 child: Text('Applications events'))
